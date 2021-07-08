@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">X&amp;O</string>
+    <string name="reset_button_scor">Reset Score</string>
+    <string name="player_one">Player One</string>
+    <string name="player_two">Player Two</string>
+    <string name="reset_button">Reset Button</string>
 </resources>
