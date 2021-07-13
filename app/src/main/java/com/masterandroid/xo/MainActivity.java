@@ -3,6 +3,7 @@ package com.masterandroid.xo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView score2;
     private Button[] buttons = new Button[10];
     private Button buttonRst;
+    private Button buttonScr;
 
     private int playerScor1;
     private int playerScor2;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         score1 = (TextView) findViewById(R.id.ScorePlayerOne);
         score2 = (TextView) findViewById(R.id.scorePlayerTwo);
         buttonRst = (Button) findViewById(R.id.buttonRst);
+        buttonScr = (Button) findViewById(R.id.buttonScr);
 
         for (int i = 1; i < buttons.length; i++) {
             String button = "button" + i;
@@ -39,6 +42,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttons[i] = (Button) findViewById(resourceId);
             buttons[i].setOnClickListener(this);
         }
+        buttonRst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetGame();
+            }
+        });
+        buttonScr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetScore();
+            }
+        });
         playerScor1 = 0;
         playerScor2 = 0;
         //true for first player, false for second player
@@ -57,17 +72,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             state[nrButtonPressed] = 1;
             ((Button) v).setText("X");
         } else {
-            state[nrButtonPressed] = 2;
+            state[nrButtonPressed] = 0;
             ((Button) v).setText("O");
         }
         roundCount++;
         if (checkWinner() == 1) {
             Toast.makeText(this, "Jucator 1 a castigat", Toast.LENGTH_SHORT).show();
-            score1.setText(playerScor1+1);
+            playerScor1+=1;
+            score1.setText(Integer.toString(playerScor1));
+            end();
         }
         if (checkWinner() == 0) {
             Toast.makeText(this, "Jucator 2 a castigat", Toast.LENGTH_SHORT).show();
-            score1.setText(playerScor1+1);
+            playerScor2+=1;
+            score2.setText(Integer.toString(playerScor2));
+            end();
         }
         if(activePlayer)
             activePlayer = false;
@@ -113,5 +132,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (state[3] == 0 && state[5] == 0 && state[7] == 0)
             return 0;
         return 2;
+    }
+    public void resetGame(){
+        for(int i = 1; i< buttons.length ; i++) {
+            state[i] = 2;
+            buttons[i].setText("");
+        }
+    }
+    public void resetScore(){
+        playerScor1 = 0;
+        playerScor2 = 0;
+        score1.setText("0");
+        score2.setText("0");
+    }
+    public void end(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                resetGame();
+            }
+        }, 5000);
     }
 }

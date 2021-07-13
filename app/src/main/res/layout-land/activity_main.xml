@@ -9,16 +9,17 @@
 
     <Button
         android:id="@+id/buttonScr"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#DB1F48"
+        android:layout_marginRight="25dp"
         android:text="@string/reset_button_scor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.379"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.429" />
 
     <TextView
         android:id="@+id/textViewPlayerOne"
@@ -100,14 +101,14 @@
         android:layout_height="100dp"
         android:backgroundTint="#01949A"
         android:text=""
-        android:textSize="50dp"
         android:textColor="@color/black"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.282" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <Button
         android:id="@+id/button8"
@@ -191,15 +192,13 @@
 
     <Button
         android:id="@+id/buttonRst"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
         android:backgroundTint="#6A2E35"
         android:text="@string/reset_button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonScr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintStart_toEndOf="@+id/button6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
